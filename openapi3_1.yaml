@@ -1,0 +1,1607 @@
+openapi: 3.1.0
+info:
+  title: API de E-Commerce
+  description: API para administrar el sistema de E-Commerce y permitir consultas a los usuarios de TEYMSAS.
+  version: 1.0.0
+servers:
+  - url: https://api.TEYMSAS.com/v1
+    description: Servidor principal
+
+tags:
+  - name: Usuarios
+    description: Endpoints para la gestión de usuarios
+  - name: Clientes
+    description: Endpoints para la gestión de clientes
+  - name: Departamentos
+    description: Endpoints para la gestión de departamentos
+  - name: Ciudades
+    description: Endpoints para la gestión de ciudades
+  - name: Métodos de Pago
+    description: Endpoints para la gestión de métodos de pago
+  - name: Estados de Pedidos
+    description: Endpoints para la gestión de estados de pedidos
+  - name: Órdenes de Clientes
+    description: Endpoints para la gestión de órdenes de clientes
+  - name: Entregas
+    description: Endpoints para la gestión de entregas
+  - name: Categorías
+    description: Endpoints para la gestión de categorías
+  - name: Productos
+    description: Endpoints para la gestión de productos
+  - name: Imágenes de Productos
+    description: Endpoints para la gestión de imágenes de productos
+  - name: Productos en Órdenes de Clientes
+    description: Endpoints para la gestión de productos en órdenes de clientes
+  - name: Proveedores
+    description: Endpoints para la gestión de proveedores
+  - name: Órdenes de Compra
+    description: Endpoints para la gestión de órdenes de compra
+  - name: Productos en Órdenes de Compra
+    description: Endpoints para la gestión de productos en órdenes de compra
+
+paths:
+
+  /users:
+    get:
+      tags:
+        - Usuarios
+      summary: Obtener todos los usuarios
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: No autorizado
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Usuarios
+      summary: Crear un nuevo usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Usuario creado
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /users/{id}:
+    get:
+      tags:
+        - Usuarios
+      summary: Obtener un usuario por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle del usuario
+        '404':
+          description: Usuario no encontrado
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Usuarios
+      summary: Actualizar un usuario por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Usuario actualizado
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Usuario no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Usuarios
+      summary: Eliminar un usuario por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Usuario eliminado
+        '404':
+          description: Usuario no encontrado
+        '500':
+          description: Error del servidor
+
+  /customers:
+    get:
+      tags:
+        - Clientes
+      summary: Obtener todos los clientes
+      responses:
+        '200':
+          description: Lista de clientes
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Clientes
+      summary: Crear un nuevo cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: Cliente creado
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /customers/{id}:
+    get:
+      tags:
+        - Clientes
+      summary: Obtener un cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle del cliente
+        '404':
+          description: Cliente no encontrado
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Clientes
+      summary: Actualizar un cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: Cliente actualizado
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Cliente no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Clientes
+      summary: Eliminar un cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Cliente eliminado
+        '404':
+          description: Cliente no encontrado
+        '500':
+          description: Error del servidor
+
+  /departments:
+    get:
+      tags:
+        - Departamentos
+      summary: Obtener todos los departamentos
+      responses:
+        '200':
+          description: Lista de departamentos
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Departamentos
+      summary: Crear un nuevo departamento
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+      responses:
+        '201':
+          description: Departamento creado
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /departments/{id}:
+    get:
+      tags:
+        - Departamentos
+      summary: Obtener un departamento por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle del departamento
+        '404':
+          description: Departamento no encontrado
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Departamentos
+      summary: Actualizar un departamento por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+      responses:
+        '200':
+          description: Departamento actualizado
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Departamento no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Departamentos
+      summary: Eliminar un departamento por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Departamento eliminado
+        '404':
+          description: Departamento no encontrado
+        '500':
+          description: Error del servidor
+
+  /cities:
+    get:
+      tags:
+        - Ciudades
+      summary: Obtener todas las ciudades
+      responses:
+        '200':
+          description: Lista de ciudades
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Ciudades
+      summary: Crear una nueva ciudad
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/City'
+      responses:
+        '201':
+          description: Ciudad creada
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /cities/{id}:
+    get:
+      tags:
+        - Ciudades
+      summary: Obtener una ciudad por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle de la ciudad
+        '404':
+          description: Ciudad no encontrada
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Ciudades
+      summary: Actualizar una ciudad por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/City'
+      responses:
+        '200':
+          description: Ciudad actualizada
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Ciudad no encontrada
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Ciudades
+      summary: Eliminar una ciudad por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Ciudad eliminada
+        '404':
+          description: Ciudad no encontrada
+        '500':
+          description: Error del servidor
+  /payment_methods:
+    get:
+      tags:
+        - Métodos de Pago
+      summary: Obtener todos los métodos de pago
+      responses:
+        '200':
+          description: Lista de métodos de pago
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Métodos de Pago
+      summary: Crear un nuevo método de pago
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentMethod'
+      responses:
+        '201':
+          description: Método de pago creado
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /payment_methods/{id}:
+    get:
+      tags:
+        - Métodos de Pago
+      summary: Obtener un método de pago por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle del método de pago
+        '404':
+          description: Método de pago no encontrado
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Métodos de Pago
+      summary: Actualizar un método de pago por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentMethod'
+      responses:
+        '200':
+          description: Método de pago actualizado
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Método de pago no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Métodos de Pago
+      summary: Eliminar un método de pago por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Método de pago eliminado
+        '404':
+          description: Método de pago no encontrado
+        '500':
+          description: Error del servidor
+
+  /order_status:
+    get:
+      tags:
+        - Estados de Pedidos
+      summary: Obtener todos los estados de pedidos
+      responses:
+        '200':
+          description: Lista de estados de pedidos
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Estados de Pedidos
+      summary: Crear un nuevo estado de pedido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderStatus'
+      responses:
+        '201':
+          description: Estado de pedido creado
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /order_status/{id}:
+    get:
+      tags:
+        - Estados de Pedidos
+      summary: Obtener un estado de pedido por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle del estado de pedido
+        '404':
+          description: Estado de pedido no encontrado
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Estados de Pedidos
+      summary: Actualizar un estado de pedido por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderStatus'
+      responses:
+        '200':
+          description: Estado de pedido actualizado
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Estado de pedido no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Estados de Pedidos
+      summary: Eliminar un estado de pedido por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Estado de pedido eliminado
+        '404':
+          description: Estado de pedido no encontrado
+        '500':
+          description: Error del servidor
+
+  /customer_orders:
+    get:
+      tags:
+        - Órdenes de Clientes
+      summary: Obtener todas las órdenes de clientes
+      responses:
+        '200':
+          description: Lista de órdenes de clientes
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Órdenes de Clientes
+      summary: Crear una nueva orden de cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Orden de cliente creada
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /customer_orders/{id}:
+    get:
+      tags:
+        - Órdenes de Clientes
+      summary: Obtener una orden de cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle de la orden de cliente
+        '404':
+          description: Orden de cliente no encontrada
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Órdenes de Clientes
+      summary: Actualizar una orden de cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: Orden de cliente actualizada
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Orden de cliente no encontrada
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Órdenes de Clientes
+      summary: Eliminar una orden de cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Orden de cliente eliminada
+        '404':
+          description: Orden de cliente no encontrada
+        '500':
+          description: Error del servidor
+
+  /deliveries:
+    get:
+      tags:
+        - Entregas
+      summary: Obtener todas las entregas
+      responses:
+        '200':
+          description: Lista de entregas
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Entregas
+      summary: Crear una nueva entrega
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Delivery'
+      responses:
+        '201':
+          description: Entrega creada
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /deliveries/{id}:
+    get:
+      tags:
+        - Entregas
+      summary: Obtener una entrega por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle de la entrega
+        '404':
+          description: Entrega no encontrada
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Entregas
+      summary: Actualizar una entrega por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Delivery'
+      responses:
+        '200':
+          description: Entrega actualizada
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Entrega no encontrada
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Entregas
+      summary: Eliminar una entrega por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Entrega eliminada
+        '404':
+          description: Entrega no encontrada
+        '500':
+          description: Error del servidor
+
+  /categories:
+    get:
+      tags:
+        - Categorías
+      summary: Obtener todas las categorías
+      responses:
+        '200':
+          description: Lista de categorías
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Categorías
+      summary: Crear una nueva categoría
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '201':
+          description: Categoría creada
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /categories/{id}:
+    get:
+      tags:
+        - Categorías
+      summary: Obtener una categoría por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle de la categoría
+        '404':
+          description: Categoría no encontrada
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Categorías
+      summary: Actualizar una categoría por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '200':
+          description: Categoría actualizada
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Categoría no encontrada
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Categorías
+      summary: Eliminar una categoría por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Categoría eliminada
+        '404':
+          description: Categoría no encontrada
+        '500':
+          description: Error del servidor
+
+  /products:
+    get:
+      tags:
+        - Productos
+      summary: Obtener todos los productos
+      responses:
+        '200':
+          description: Lista de productos
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Productos
+      summary: Crear un nuevo producto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: Producto creado
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /products/{id}:
+    get:
+      tags:
+        - Productos
+      summary: Obtener un producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle del producto
+        '404':
+          description: Producto no encontrado
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Productos
+      summary: Actualizar un producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Producto actualizado
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Producto no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Productos
+      summary: Eliminar un producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Producto eliminado
+        '404':
+          description: Producto no encontrado
+        '500':
+          description: Error del servidor
+
+  /images_product:
+    get:
+      tags:
+        - Imágenes de Productos
+      summary: Obtener todas las imágenes de productos
+      responses:
+        '200':
+          description: Lista de imágenes de productos
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Imágenes de Productos
+      summary: Crear una nueva imagen de producto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductImage'
+      responses:
+        '201':
+          description: Imagen de producto creada
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /images_product/{id}:
+    get:
+      tags:
+        - Imágenes de Productos
+      summary: Obtener una imagen de producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle de la imagen de producto
+        '404':
+          description: Imagen de producto no encontrada
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Imágenes de Productos
+      summary: Actualizar una imagen de producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductImage'
+      responses:
+        '200':
+          description: Imagen de producto actualizada
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Imagen de producto no encontrada
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Imágenes de Productos
+      summary: Eliminar una imagen de producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Imagen de producto eliminada
+        '404':
+          description: Imagen de producto no encontrada
+        '500':
+          description: Error del servidor
+
+  /order_products_customers:
+    get:
+      tags:
+        - Productos en Órdenes de Clientes
+      summary: Obtener todos los productos en órdenes de clientes
+      responses:
+        '200':
+          description: Lista de productos en órdenes de clientes
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Productos en Órdenes de Clientes
+      summary: Crear un nuevo producto en orden de cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderProductCustomer'
+      responses:
+        '201':
+          description: Producto en orden de cliente creado
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /order_products_customers/{id}:
+    get:
+      tags:
+        - Productos en Órdenes de Clientes
+      summary: Obtener un producto en orden de cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle del producto en orden de cliente
+        '404':
+          description: Producto en orden de cliente no encontrado
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Productos en Órdenes de Clientes
+      summary: Actualizar un producto en orden de cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderProductCustomer'
+      responses:
+        '200':
+          description: Producto en orden de cliente actualizado
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Producto en orden de cliente no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Productos en Órdenes de Clientes
+      summary: Eliminar un producto en orden de cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Producto en orden de cliente eliminado
+        '404':
+          description: Producto en orden de cliente no encontrado
+        '500':
+          description: Error del servidor
+
+  /providers:
+    get:
+      tags:
+        - Proveedores
+      summary: Obtener todos los proveedores
+      responses:
+        '200':
+          description: Lista de proveedores
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Proveedores
+      summary: Crear un nuevo proveedor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Provider'
+      responses:
+        '201':
+          description: Proveedor creado
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /providers/{id}:
+    get:
+      tags:
+        - Proveedores
+      summary: Obtener un proveedor por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle del proveedor
+        '404':
+          description: Proveedor no encontrado
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Proveedores
+      summary: Actualizar un proveedor por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Provider'
+      responses:
+        '200':
+          description: Proveedor actualizado
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Proveedor no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Proveedores
+      summary: Eliminar un proveedor por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Proveedor eliminado
+        '404':
+          description: Proveedor no encontrado
+        '500':
+          description: Error del servidor
+
+  /purchase_orders:
+    get:
+      tags:
+        - Órdenes de Compra
+      summary: Obtener todas las órdenes de compra
+      responses:
+        '200':
+          description: Lista de órdenes de compra
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Órdenes de Compra
+      summary: Crear una nueva orden de compra
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseOrder'
+      responses:
+        '201':
+          description: Orden de compra creada
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /purchase_orders/{id}:
+    get:
+      tags:
+        - Órdenes de Compra
+      summary: Obtener una orden de compra por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle de la orden de compra
+        '404':
+          description: Orden de compra no encontrada
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Órdenes de Compra
+      summary: Actualizar una orden de compra por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseOrder'
+      responses:
+        '200':
+          description: Orden de compra actualizada
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Orden de compra no encontrada
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Órdenes de Compra
+      summary: Eliminar una orden de compra por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Orden de compra eliminada
+        '404':
+          description: Orden de compra no encontrada
+        '500':
+          description: Error del servidor
+
+  /order_products_purchases:
+    get:
+      tags:
+        - Productos en Órdenes de Compra
+      summary: Obtener todos los productos en órdenes de compra
+      responses:
+        '200':
+          description: Lista de productos en órdenes de compra
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - Productos en Órdenes de Compra
+      summary: Crear un nuevo producto en orden de compra
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderProductPurchase'
+      responses:
+        '201':
+          description: Producto en orden de compra creado
+        '400':
+          description: Solicitud incorrecta
+        '500':
+          description: Error del servidor
+
+  /order_products_purchases/{id}:
+    get:
+      tags:
+        - Productos en Órdenes de Compra
+      summary: Obtener un producto en orden de compra por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalle del producto en orden de compra
+        '404':
+          description: Producto en orden de compra no encontrado
+        '500':
+          description: Error del servidor
+    put:
+      tags:
+        - Productos en Órdenes de Compra
+      summary: Actualizar un producto en orden de compra por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderProductPurchase'
+      responses:
+        '200':
+          description: Producto en orden de compra actualizado
+        '400':
+          description: Solicitud incorrecta
+        '404':
+          description: Producto en orden de compra no encontrado
+        '500':
+          description: Error del servidor
+    delete:
+      tags:
+        - Productos en Órdenes de Compra
+      summary: Eliminar un producto en orden de compra por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Producto en orden de compra eliminado
+        '404':
+          description: Producto en orden de compra no encontrado
+        '500':
+          description: Error del servidor
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        complete_name:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        phone:
+          type: string
+        role:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    Customer:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        document:
+          type: string
+        address:
+          type: string
+        business_name:
+          type: string
+        RUT:
+          type: string
+        city_id:
+          type: integer
+
+    Order:
+      type: object
+      properties:
+        order_id:
+          type: integer
+        customer_id:
+          type: integer
+        order_date:
+          type: string
+          format: date
+        total:
+          type: number
+          format: float
+        payment_method_id:
+          type: integer
+        order_status_id:
+          type: integer
+        updated_at:
+          type: string
+          format: date-time
+        updated_by:
+          type: integer
+
+    Product:
+      type: object
+      properties:
+        product_id:
+          type: integer
+        description:
+          type: string
+        details:
+          type: string
+        price:
+          type: number
+          format: float
+        thumbnail:
+          type: string
+        stock:
+          type: integer
+        measures:
+          type: string
+        category_id:
+          type: integer
+        updated_at:
+          type: string
+          format: date-time
+        updated_by:
+          type: integer
+
+    Department:
+      type: object
+      properties:
+        department_id:
+          type: integer
+        name:
+          type: string
+
+    City:
+      type: object
+      properties:
+        city_id:
+          type: integer
+        name:
+          type: string
+        department_id:
+          type: integer
+
+    PaymentMethod:
+      type: object
+      properties:
+        payment_method_id:
+          type: integer
+        name:
+          type: string
+
+    OrderStatus:
+      type: object
+      properties:
+        order_status_id:
+          type: integer
+        state_name:
+          type: string
+
+    Delivery:
+      type: object
+      properties:
+        delivery_id:
+          type: integer
+        order_id:
+          type: integer
+        address:
+          type: string
+        delivery_date:
+          type: string
+          format: date
+
+    Category:
+      type: object
+      properties:
+        category_id:
+          type: integer
+        description:
+          type: string
+
+    ProductImage:
+      type: object
+      properties:
+        record_id:
+          type: integer
+        product_id:
+          type: integer
+        description:
+          type: string
+        url:
+          type: string
+
+    OrderProductCustomer:
+      type: object
+      properties:
+        order_product_id:
+          type: integer
+        order_id:
+          type: integer
+        product_id:
+          type: integer
+        quantity:
+          type: integer
+        unit_price:
+          type: number
+          format: float
+        total:
+          type: number
+          format: float
+
+    Provider:
+      type: object
+      properties:
+        provider_id:
+          type: integer
+        name:
+          type: string
+
+    PurchaseOrder:
+      type: object
+      properties:
+        purchase_id:
+          type: integer
+        provider_id:
+          type: integer
+        purchase_date:
+          type: string
+          format: date
+        total:
+          type: number
+          format: float
+        payment_method_id:
+          type: integer
+
+    OrderProductPurchase:
+      type: object
+      properties:
+        purchase_product_id:
+          type: integer
+        purchase_id:
+          type: integer
+        product_id:
+          type: integer
+        quantity:
+          type: integer
+        unit_price:
+          type: number
+          format: float
+        total:
+          type: number
+          format: float
+security:
+  - bearerAuth: []

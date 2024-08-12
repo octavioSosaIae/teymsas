@@ -6,6 +6,7 @@ require_once "controllers/DepartmentController.php";
 require_once "controllers/CityController.php";
 require_once "controllers/OrderStatusController.php";
 require_once "controllers/PaymentMethodController.php";
+require_once "controllers/ProductController.php";
 
 
 
@@ -146,5 +147,21 @@ $router->put(API_VERSION . '/categories/{id}', function ($id) {
 });
 $router->delete(API_VERSION . '/categories/{id}', function ($id) {
     $controller = new CategoryController();
+    $controller->delete($id);
+});
+
+// Rutas para el controlador de productos
+$router->post(API_VERSION . '/products', [ProductController::class, 'create']);
+$router->get(API_VERSION . '/products', [ProductController::class, 'getAll']);
+$router->get(API_VERSION . '/products/{id}', function ($id) {
+    $controller = new ProductController();
+    $controller->getById($id);
+});
+$router->put(API_VERSION . '/categories/{id}', function ($id) {
+    $controller = new ProductController();
+    $controller->update($id);
+});
+$router->delete(API_VERSION . '/categories/{id}', function ($id) {
+    $controller = new ProductController();
     $controller->delete($id);
 });

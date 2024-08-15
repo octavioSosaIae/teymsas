@@ -13,9 +13,10 @@ class Product
     private $stock;
     private $measures;
     private $idCategory;
+    private $userId;
 
 
-    public function __construct($idProduct = null, $description = null, $details = null, $price = null, $thumbnail = null, $stock = null, $measures = null, $idCategory = null)
+    public function __construct($idProduct = null, $description = null, $details = null, $price = null, $thumbnail = null, $stock = null, $measures = null, $idCategory = null,$userId = null)
     {
         $this->idProduct = $idProduct;
         $this->description = $description;
@@ -25,10 +26,11 @@ class Product
         $this->stock = $stock;
         $this->measures = $measures;
         $this->idCategory = $idCategory;
+        $this->userId = $userId;
     }
 
 
-    public static function create($description, $details, $price, $thumbnail, $stock, $measures, $idCategory)
+    public static function create($description, $details, $price, $thumbnail, $stock, $measures, $idCategory, $userId)
     {
         $mysqli = Database::getInstanceDB();
         $stmt = $mysqli->prepare("INSERT INTO products (description_product, details_product, price_product, thumbnail_product, stock_product, measures_product, id_Category) VALUES (?,?,?,?,?,?,?)");

@@ -1,5 +1,6 @@
 <?php
 
+
 require_once dirname(__DIR__) . '/models/Product.php';
 require_once dirname(__DIR__) . '../../core/Response.php';
 

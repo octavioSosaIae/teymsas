@@ -157,11 +157,11 @@ $router->get(API_VERSION . '/products/{id}', function ($id) {
     $controller = new ProductController();
     $controller->getById($id);
 });
-$router->put(API_VERSION . '/categories/{id}', function ($id) {
+$router->put(API_VERSION . '/products/{id}', function ($id) {
     $controller = new ProductController();
     $controller->update($id);
 });
-$router->delete(API_VERSION . '/categories/{id}', function ($id) {
+$router->delete(API_VERSION . '/products/{id}', function ($id) {
     $controller = new ProductController();
     $controller->delete($id);
 });

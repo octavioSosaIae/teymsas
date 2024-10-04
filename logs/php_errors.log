@@ -36,3 +36,43 @@ Stack trace:
 [07-Aug-2024 00:40:35 UTC] PHP Warning:  Undefined array key 0 in /var/www/html/teymsas/index.php on line 26
 [07-Aug-2024 17:28:33 UTC] PHP Warning:  Undefined array key "REDIRECT_URL" in /var/www/html/teymsas/index.php on line 13
 [07-Aug-2024 17:28:33 UTC] PHP Warning:  Undefined array key "REDIRECT_URL" in /var/www/html/teymsas/index.php on line 14
+[12-Aug-2024 03:37:39 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "ProductController" not found in C:\xampp\htdocs\teymsas\app\core\Router.php:75
+Stack trace:
+#0 C:\xampp\htdocs\teymsas\index.php(42): Router->dispatchRoute('/api/v1/product...', 'GET')
+#1 {main}
+  thrown in C:\xampp\htdocs\teymsas\app\core\Router.php on line 75
+[12-Aug-2024 03:37:51 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "ProductController" not found in C:\xampp\htdocs\teymsas\app\core\Router.php:75
+Stack trace:
+#0 C:\xampp\htdocs\teymsas\index.php(42): Router->dispatchRoute('/api/v1/product...', 'POST')
+#1 {main}
+  thrown in C:\xampp\htdocs\teymsas\app\core\Router.php on line 75
+[12-Aug-2024 03:38:03 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "ProductController" not found in C:\xampp\htdocs\teymsas\app\core\Router.php:75
+Stack trace:
+#0 C:\xampp\htdocs\teymsas\index.php(42): Router->dispatchRoute('/api/v1/product...', 'POST')
+#1 {main}
+  thrown in C:\xampp\htdocs\teymsas\app\core\Router.php on line 75
+[12-Aug-2024 03:39:06 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "ProductController" not found in C:\xampp\htdocs\teymsas\app\core\Router.php:75
+Stack trace:
+#0 C:\xampp\htdocs\teymsas\index.php(42): Router->dispatchRoute('/api/v1/product...', 'GET')
+#1 {main}
+  thrown in C:\xampp\htdocs\teymsas\app\core\Router.php on line 75
+[12-Aug-2024 03:39:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "ProductController" not found in C:\xampp\htdocs\teymsas\app\core\Router.php:75
+Stack trace:
+#0 C:\xampp\htdocs\teymsas\index.php(42): Router->dispatchRoute('/api/v1/product...', 'GET')
+#1 {main}
+  thrown in C:\xampp\htdocs\teymsas\app\core\Router.php on line 75
+[12-Aug-2024 03:40:59 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "ProductController" not found in C:\xampp\htdocs\teymsas\app\core\Router.php:75
+Stack trace:
+#0 C:\xampp\htdocs\teymsas\index.php(42): Router->dispatchRoute('/api/v1/product...', 'GET')
+#1 {main}
+  thrown in C:\xampp\htdocs\teymsas\app\core\Router.php on line 75
+[12-Aug-2024 03:45:37 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "ProductController" not found in C:\xampp\htdocs\teymsas\app\core\Router.php:75
+Stack trace:
+#0 C:\xampp\htdocs\teymsas\index.php(42): Router->dispatchRoute('/api/v1/product...', 'GET')
+#1 {main}
+  thrown in C:\xampp\htdocs\teymsas\app\core\Router.php on line 75
+[12-Aug-2024 03:47:10 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "ProductController" not found in C:\xampp\htdocs\teymsas\app\core\Router.php:75
+Stack trace:
+#0 C:\xampp\htdocs\teymsas\index.php(42): Router->dispatchRoute('/api/v1/product...', 'GET')
+#1 {main}
+  thrown in C:\xampp\htdocs\teymsas\app\core\Router.php on line 75

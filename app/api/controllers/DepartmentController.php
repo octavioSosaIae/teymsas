@@ -9,7 +9,7 @@ class DepartmentController
     public function create()
     {
         $response = new Response();
-        $nameDepartment = $_POST['name_departament'] ?? null;
+        $nameDepartment = $_POST['name_department'] ?? null;
 
         try {
             if (!$nameDepartment) {
@@ -85,7 +85,7 @@ class DepartmentController
             }
 
             $department = Department::getById($id);
-            $department->setNameDepartment($data['name_departament'] ?? $department->getNameDepartment());
+            $department->setNameDepartment($data['name_department'] ?? $department->getNameDepartment());
 
             $department->update();
 

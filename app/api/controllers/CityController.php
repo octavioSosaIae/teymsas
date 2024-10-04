@@ -9,7 +9,7 @@ class CityController
     public function create(){
         $response = new Response();
         $nameCity = $_POST['name_city'] ?? null;
-        $idDepartment = $_POST['id_departament'] ?? null;
+        $idDepartment = $_POST['id_department'] ?? null;
 
         try {
             if (!$nameCity || !$idDepartment) {
@@ -84,7 +84,7 @@ class CityController
 
             $city = City::getById($id);
             $city->setNameCity($data['name_city'] ?? $city->getNameCity());
-            $city->setIdDepartment($data['id_departament'] ?? $city->getIdDepartment());
+            $city->setIdDepartment($data['id_department'] ?? $city->getIdDepartment());
 
             $city->update();
 
